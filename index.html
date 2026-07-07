@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{const t=localStorage.getItem('allantacuel-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){};</script>
+  <meta name="description" content="Allan Tacuel's portfolio for software projects, digital art, creative work, and technical experience.">
+  <title>Allan Tacuel | Portfolio</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Primary navigation">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">AT</span>
+        <span class="brand__text">Allan Tacuel</span>
+      </a>
+
+      <button class="icon-button nav-toggle js-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <div class="nav-menu" id="primary-menu">
+        <a class="nav-link is-active" href="index.html" aria-current="page">Home</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="projects/index.html">Projects</a>
+        <a class="nav-link" href="resume.html">Resume</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <button class="theme-toggle js-theme-toggle" type="button" aria-label="Switch color theme">
+          <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+          <span class="theme-toggle__text">Theme</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section">
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <p class="eyebrow">Software, visual systems, and creative tools</p>
+          <h1>Allan Tacuel builds useful things with code and images.</h1>
+          <p class="hero__lead">
+            A portfolio for software projects, digital illustration, creative writing, and technical experiments.
+          </p>
+          <div class="button-row" aria-label="Primary actions">
+            <a class="button button--primary" href="projects/index.html">View Projects</a>
+            <a class="button button--secondary" href="contact.html">Contact Allan</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Portfolio snapshot">
+          <div class="portrait-placeholder" aria-hidden="true">
+            <span>AT</span>
+          </div>
+          <div class="hero-card__meta">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Open to software and creative collaboration</span>
+          </div>
+          <dl class="metric-list">
+            <div>
+              <dt>Focus</dt>
+              <dd>Static web, UI, art, ML experiments</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>HTML, CSS, JavaScript, Python</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Featured work</p>
+          <h2>Selected software engineering and creative projects.</h2>
+        </div>
+
+        <div class="card-grid card-grid--three">
+          <article class="project-card">
+            <div class="project-card__visual placeholder-visual placeholder-visual--code" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h3>Expression Recognition</h3>
+              <p>A real-time facial expression classifier built with Python and Streamlit, running on Hugging Face Spaces.</p>
+              <a class="text-link" href="https://huggingface.co/spaces/allantacuelwvsu/expression-recognition" target="_blank" rel="noreferrer">Open Space</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual">
+              <img class="project-card__image" src="assets/images/projects/object-detection-cv-thumb.jpg" alt="Object Detection preview">
+            </div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h3>Object Detection</h3>
+              <p>A computer vision prototype using SSDVGG16 built for our Computer Vision class, hosted on Google Colab.</p>
+              <a class="text-link" href="https://colab.research.google.com/drive/1WKRhZuvn-_ucXili_A-6hXG_W1O3Jvgy?usp=sharing" target="_blank" rel="noreferrer">Open Colab</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual">
+              <img class="project-card__image" src="assets/images/projects/sur-thumb.jpg" alt="Sur concept art preview">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--warm">2D Art</span>
+              <h3>Sur Character Art</h3>
+              <p>Concept artwork and digital illustration designs for a game concept, made using Krita.</p>
+              <a class="text-link" href="https://www.artstation.com/artwork/mA5ow8" target="_blank" rel="noreferrer">View Artwork</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-layout">
+        <div>
+          <div class="section-header section-header--left">
+            <p class="eyebrow">Skills overview</p>
+            <h2>Technical range with room for creative practice.</h2>
+          </div>
+          <div class="skill-cloud" aria-label="Skills">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>Git</span>
+            <span>GitHub Pages</span>
+            <span>Responsive UI</span>
+            <span>Digital illustration</span>
+            <span>Creative writing</span>
+          </div>
+        </div>
+
+        <aside class="about-preview" aria-labelledby="about-preview-title">
+          <p class="eyebrow">About preview</p>
+          <h2 id="about-preview-title">Engineer-minded, art-aware, and building at the intersection of logic and visuals.</h2>
+          <p>
+            I am a computer science student focusing on static web development, machine learning experiments, and digital art. My work centers on creating clean, responsive, and useful interfaces.
+          </p>
+          <a class="button button--outline" href="about.html">Read More</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>&copy; <span class="js-current-year">2026</span> Allan Tacuel. Built for GitHub Pages.</p>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="https://github.com/allantacuelwvsu" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/allan-tacuel" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:allantacuel@gmail.com">Email</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

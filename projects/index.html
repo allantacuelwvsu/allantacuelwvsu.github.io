@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{const t=localStorage.getItem('allantacuel-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){};</script>
+  <meta name="description" content="Projects hub for Allan Tacuel, including code, Hugging Face experiments, digital art, and creative pieces.">
+  <title>Projects | Allan Tacuel</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Primary navigation">
+      <a class="brand" href="../index.html">
+        <span class="brand__mark" aria-hidden="true">AT</span>
+        <span class="brand__text">Allan Tacuel</span>
+      </a>
+      <button class="icon-button nav-toggle js-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <div class="nav-menu" id="primary-menu">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="../about.html">About</a>
+        <a class="nav-link is-active" href="index.html" aria-current="page">Projects</a>
+        <a class="nav-link" href="../resume.html">Resume</a>
+        <a class="nav-link" href="../contact.html">Contact</a>
+        <button class="theme-toggle js-theme-toggle" type="button" aria-label="Switch color theme">
+          <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+          <span class="theme-toggle__text">Theme</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero section">
+      <div class="container page-hero__inner">
+        <p class="eyebrow">Projects hub</p>
+        <h1>A single dump grid for code, models, art, and creative work.</h1>
+        <p>
+          Every item uses the same universal card structure so the portfolio can grow without redesigning the page each time.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <!-- Future filter row: add Sort by: All | Code | Art | Models when JavaScript filtering is ready. -->
+        <div class="filter-placeholder" aria-label="Future project filters">
+          <span>All work</span>
+          <span>Code</span>
+          <span>2D Art</span>
+          <span>Models</span>
+        </div>
+
+        <div class="dump-grid">
+          <!-- PROJECT_CARDS_START -->
+          <article class="project-card project-card--tall" data-project-id="expression-recognition-cv">
+            <div class="project-card__visual placeholder-visual placeholder-visual--code" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h2>Expression Recognition (CV)</h2>
+              <p class="project-card__meta"><time datetime="2025-06-01">2025-06-01</time></p>
+              <p>Among the AI-projects marathon we did for Architecture &amp; Organization subject in CS. Uses Streamlit for UI and Python for model loading, eval, &amp; training</p>
+              <div class="tag-row">
+                <span>Python</span>
+                <span>Streamlit</span>
+                <span>AI</span>
+                <span>CV</span>
+              </div>
+              <a class="button button--outline" href="https://huggingface.co/spaces/allantacuelwvsu/expression-recognition" target="_blank" rel="noreferrer">HuggingFace link here</a>
+            </div>
+          </article>
+
+<article class="project-card project-card--tall" data-project-id="object-detection-cv">
+            <div class="project-card__visual"><img class="project-card__image" src="../assets/images/projects/object-detection-cv-thumb.jpg" alt="Showcase GIF"></div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h2>Object Detection (CV)</h2>
+              <p class="project-card__meta"><time datetime="2025-10-28">2025-10-28</time></p>
+              <p>A quick demo for SSDVGG16 CV model we made in Colab for our Computer Vision class in CS. Was originally meant to be local but SSD is heavy so we opted for Colab.</p>
+              <div class="tag-row">
+                <span>Python</span>
+                <span>Google Colab</span>
+                <span>CV</span>
+              </div>
+              <a class="button button--outline" href="https://colab.research.google.com/drive/1WKRhZuvn-_ucXili_A-6hXG_W1O3Jvgy?usp=sharing" target="_blank" rel="noreferrer">Colab link here</a>
+            </div>
+          </article>
+
+<article class="project-card project-card--tall" data-project-id="resume-builder">
+            <div class="project-card__visual placeholder-visual placeholder-visual--code" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h2>Resume Builder</h2>
+              <p class="project-card__meta"><time datetime="2026-07-07">2026-07-07</time></p>
+              <p>I built this resume builder tool for myself. Although it&#039;s constrained to just one layout and specific inputs, you can check it out!</p>
+              <div class="tag-row">
+                <span>Python</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+              </div>
+              <a class="button button--outline" href="https://github.com/allantacuelwvsu/resume_builder" target="_blank" rel="noreferrer">View project</a>
+            </div>
+          </article>
+
+<article class="project-card project-card--tall" data-project-id="github-pages-portfolio">
+            <div class="project-card__visual placeholder-visual placeholder-visual--code" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge">Code</span>
+              <h2>GitHub Pages Portfolio</h2>
+              <p>Static multi-page website scaffolded for performance, accessibility, and fast iteration.</p>
+              <div class="tag-row">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JS</span>
+              </div>
+              <a class="button button--outline" href="https://github.com/allantacuelwvsu/allantacuelwvsu.github.io" target="_blank" rel="noreferrer">View source</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--tall" data-project-id="hugging-face-demo-slot">
+            <div class="project-card__visual placeholder-visual placeholder-visual--model" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge badge--green">Model</span>
+              <h2>Hugging Face Demo Slot</h2>
+              <p>A placeholder for a model page, dataset card, or small AI utility write-up.</p>
+              <div class="tag-row">
+                <span>Python</span>
+                <span>ML</span>
+                <span>Demo</span>
+              </div>
+              <a class="button button--outline" href="https://huggingface.co/" target="_blank" rel="noreferrer">Open profile</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--tall" data-project-id="illustration-collection">
+            <div class="project-card__visual placeholder-visual placeholder-visual--art" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge badge--warm">2D Art</span>
+              <h2>Illustration Collection</h2>
+              <p>A draft slot for finished artwork, studies, thumbnails, or visual development pieces.</p>
+              <div class="tag-row">
+                <span>Digital</span>
+                <span>Study</span>
+                <span>Archive</span>
+              </div>
+              <a class="button button--outline" href="https://www.artstation.com/" target="_blank" rel="noreferrer">View art</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--tall" data-project-id="creative-writing-archive">
+            <div class="project-card__visual placeholder-visual placeholder-visual--writing" aria-hidden="true"></div>
+            <div class="project-card__body">
+              <span class="badge badge--violet">Writing</span>
+              <h2>Creative Writing Archive</h2>
+              <p>A future home for essays, short fiction, project notes, or process reflections.</p>
+              <div class="tag-row">
+                <span>Notes</span>
+                <span>Draft</span>
+                <span>Creative</span>
+              </div>
+              <a class="button button--outline" href="../contact.html">Ask for samples</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--tall" data-project-id="sur">
+            <div class="project-card__visual"><img class="project-card__image" src="../assets/images/projects/sur-thumb.jpg" alt="Sur"></div>
+            <div class="project-card__body">
+              <span class="badge badge--warm">2D Art</span>
+              <h2>Sur</h2>
+              <p class="project-card__meta"><time datetime="2024-12-10">2024-12-10</time></p>
+              <p>Was a game-dev concept, didn&#039;t really go to prod but I have made character concept arts (and even attempted a rather bad, amateur Unity mockup in vain). It was among the first 2D digital art projects I took on!</p>
+              <div class="tag-row">
+                <span>Krita</span>
+              </div>
+              <a class="button button--outline" href="https://www.artstation.com/artwork/mA5ow8" target="_blank" rel="noreferrer">Concept arts here</a>
+            </div>
+          </article>
+<!-- PROJECT_CARDS_END -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>&copy; <span class="js-current-year">2026</span> Allan Tacuel. Built for GitHub Pages.</p>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="https://github.com/allantacuelwvsu" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/allan-tacuel" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:allantacuel@gmail.com">Email</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>try{const t=localStorage.getItem('allantacuel-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){};</script>
+  <meta name="robots" content="noindex">
+  <title>Project Card Studio | Allan Tacuel</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: var(--color-paper);
+    }
+
+    .studio-shell {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: minmax(340px, 420px) minmax(0, 1fr);
+      margin: 0 auto;
+      max-width: 1500px;
+      padding: var(--space-4);
+    }
+
+    .studio-header {
+      border-bottom: 1px solid var(--color-line);
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .studio-header__inner {
+      align-items: center;
+      display: flex;
+      gap: var(--space-3);
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 1500px;
+    }
+
+    .studio-title {
+      margin: 0;
+    }
+
+    .studio-title small {
+      color: var(--color-ink-soft);
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-top: var(--space-1);
+    }
+
+    .studio-panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: var(--space-4);
+    }
+
+    .studio-panel--sticky {
+      align-self: start;
+      position: sticky;
+      top: calc(var(--header-height) + var(--space-3));
+    }
+
+    .studio-form {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .field label {
+      font-weight: 800;
+    }
+
+    .field small,
+    .studio-note,
+    .queue-list small {
+      color: var(--color-ink-soft);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      background: var(--color-surface-strong);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink);
+      font: inherit;
+      min-height: 2.75rem;
+      padding: 0.7rem 0.8rem;
+      width: 100%;
+    }
+
+    .field textarea {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--color-primary);
+      outline: 3px solid color-mix(in srgb, var(--color-primary) 32%, transparent);
+    }
+
+    .field-row {
+      display: grid;
+      gap: var(--space-3);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .studio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .studio-actions .button {
+      flex: 1 1 150px;
+    }
+
+    .status-bar {
+      background: var(--color-surface-strong);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink-soft);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: var(--space-2);
+    }
+
+    .preview-toolbar {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      justify-content: space-between;
+      margin-bottom: var(--space-4);
+    }
+
+    .studio-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .studio-draft-card {
+      outline: 3px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+      outline-offset: 4px;
+    }
+
+    .queue-list {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .queue-item {
+      align-items: center;
+      background: var(--color-surface-strong);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      display: grid;
+      gap: var(--space-2);
+      grid-template-columns: 1fr auto;
+      padding: var(--space-2);
+    }
+
+    .queue-item strong,
+    .queue-item small {
+      display: block;
+    }
+
+    .queue-item__buttons {
+      display: flex;
+      gap: var(--space-1);
+    }
+
+    .mini-button {
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      min-height: 2rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .mini-button:hover {
+      border-color: var(--color-primary);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      .studio-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .studio-panel--sticky {
+        position: static;
+      }
+
+      .studio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .studio-shell,
+      .studio-header {
+        padding: var(--space-3);
+      }
+
+      .studio-header__inner,
+      .field-row {
+        align-items: stretch;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="studio-header">
+    <div class="studio-header__inner">
+      <div>
+        <h1 class="studio-title">Project Card Studio <small>Local workspace tool for the portfolio gallery</small></h1>
+      </div>
+      <a class="button button--outline" href="projects/index.html">Open Gallery</a>
+    </div>
+  </header>
+
+  <main class="studio-shell">
+    <section class="studio-panel studio-panel--sticky" aria-labelledby="form-title">
+      <h2 id="form-title">Card Editor</h2>
+      <p class="studio-note">Preview cards here, queue one or more entries, export JSON, then run the Node injector.</p>
+
+      <form class="studio-form" id="project-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="asset-type">Asset Type</label>
+            <select id="asset-type" name="type">
+              <option value="dev">Dev</option>
+              <option value="art">Art</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="title">Project Title</label>
+          <input id="title" name="title" type="text" autocomplete="off" placeholder="Portfolio System" required>
+        </div>
+
+        <div class="field">
+          <label for="project-id">Card ID</label>
+          <input id="project-id" name="id" type="text" autocomplete="off" placeholder="portfolio-system">
+          <small>Auto-generated from the title. Reuse an existing ID to modify that card.</small>
+        </div>
+
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" placeholder="A concise one-sentence summary of the work." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="target-url">Target URL</label>
+          <input id="target-url" name="targetUrl" type="url" placeholder="https://github.com/...">
+          <small>For Art, this can be blank if you attach a showcase image.</small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="action-label">Action Label</label>
+            <input id="action-label" name="actionLabel" type="text" placeholder="View project">
+          </div>
+          <div class="field">
+            <label for="tech-stack">Tech Stack / Tags</label>
+            <input id="tech-stack" name="techStack" type="text" placeholder="HTML, CSS, JS">
+          </div>
+        </div>
+
+        <div class="field" id="visual-style-field">
+          <label for="visual-style">Dev Visual Style</label>
+          <select id="visual-style" name="visualStyle">
+            <option value="code">Code pattern</option>
+            <option value="model">Model grid</option>
+            <option value="writing">Writing lines</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="image-file">High Resolution Image</label>
+          <input id="image-file" name="imageFile" type="file" accept="image/*">
+          <small>Art cards use this for the generated thumbnail and optional showcase file.</small>
+        </div>
+
+        <div class="field">
+          <label for="image-alt">Image Alt Text</label>
+          <input id="image-alt" name="imageAlt" type="text" placeholder="Preview of the project or artwork">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="placement">New Card Placement</label>
+            <select id="placement" name="placement">
+              <option value="prepend">Top of grid</option>
+              <option value="append">Bottom of grid</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="session-file-name">Session File Name</label>
+            <input id="session-file-name" type="text" value="project-session.json">
+          </div>
+        </div>
+
+        <div class="studio-actions">
+          <button class="button button--primary" type="button" id="queue-card">Add / Update Session</button>
+          <button class="button button--outline" type="button" id="reset-form">Reset Form</button>
+        </div>
+      </form>
+
+      <hr>
+
+      <h2>Session Queue</h2>
+      <div class="studio-actions">
+        <button class="button button--secondary" type="button" id="download-session">Download JSON</button>
+        <button class="button button--outline" type="button" id="copy-command">Copy Command</button>
+      </div>
+      <p class="status-bar" id="session-status">No queued cards yet.</p>
+      <div class="queue-list" id="queue-list" aria-live="polite"></div>
+    </section>
+
+    <section class="studio-panel" aria-labelledby="preview-title">
+      <div class="preview-toolbar">
+        <div>
+          <h2 id="preview-title">Live Gallery Preview</h2>
+          <p class="studio-note">The highlighted card is the draft you are editing. Existing cards are fetched from <code>projects/index.html</code>.</p>
+        </div>
+        <div class="studio-actions">
+          <button class="button button--outline" type="button" id="refresh-gallery">Refresh Current Gallery</button>
+          <label class="button button--outline" for="project-file">Load HTML</label>
+          <input class="hidden" id="project-file" type="file" accept=".html,text/html">
+        </div>
+      </div>
+      <p class="status-bar" id="gallery-status">Loading current gallery...</p>
+      <div class="dump-grid studio-grid" id="gallery-preview" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("#project-form");
+    const galleryPreview = document.querySelector("#gallery-preview");
+    const galleryStatus = document.querySelector("#gallery-status");
+    const sessionStatus = document.querySelector("#session-status");
+    const queueList = document.querySelector("#queue-list");
+    const assetType = document.querySelector("#asset-type");
+    const titleInput = document.querySelector("#title");
+    const idInput = document.querySelector("#project-id");
+    const actionLabelInput = document.querySelector("#action-label");
+    const visualStyleField = document.querySelector("#visual-style-field");
+    const imageInput = document.querySelector("#image-file");
+    const projectFileInput = document.querySelector("#project-file");
+
+    const state = {
+      currentGalleryHtml: "",
+      imageOriginalDataUrl: "",
+      imageThumbDataUrl: "",
+      originalFilename: "",
+      queuedEntries: []
+    };
+
+    function slugify(value) {
+      return value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 80);
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function splitTags(value) {
+      return String(value || "")
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+        .slice(0, 8);
+    }
+
+    function getBadge(entry) {
+      if (entry.type === "art") {
+        return { label: "2D Art", className: "badge badge--warm" };
+      }
+      return { label: "Code", className: "badge" };
+    }
+
+    function getFormEntry() {
+      const data = new FormData(form);
+      const type = data.get("type") || "dev";
+      const id = slugify(data.get("id") || data.get("title") || "untitled-project");
+      const actionFallback = type === "art" ? "View artwork" : "View project";
+
+      return {
+        id,
+        type,
+        title: String(data.get("title") || "Untitled Project").trim(),
+        description: String(data.get("description") || "Add a concise project description.").trim(),
+        targetUrl: String(data.get("targetUrl") || "").trim(),
+        actionLabel: String(data.get("actionLabel") || actionFallback).trim(),
+        techStack: splitTags(data.get("techStack")),
+        date: String(data.get("date") || "").trim(),
+        visualStyle: String(data.get("visualStyle") || "code"),
+        imageAlt: String(data.get("imageAlt") || data.get("title") || "Project preview").trim(),
+        placement: String(data.get("placement") || "prepend"),
+        originalFilename: state.originalFilename,
+        originalDataUrl: state.imageOriginalDataUrl,
+        thumbDataUrl: state.imageThumbDataUrl
+      };
+    }
+
+    function renderCard(entry, options = {}) {
+      const badge = getBadge(entry);
+      const tags = (entry.techStack || [])
+        .map((tag) => `<span>${escapeHtml(tag)}</span>`)
+        .join("\n                ");
+      const tagBlock = tags ? `<div class="tag-row">\n                ${tags}\n              </div>` : "";
+      const dateBlock = entry.date ? `<p class="project-card__meta"><time datetime="${escapeHtml(entry.date)}">${escapeHtml(entry.date)}</time></p>` : "";
+      const imageSrc = options.previewImageSrc || entry.thumbPath || entry.thumbDataUrl || "";
+      const href = entry.targetUrl || entry.showcasePath || "#";
+      const visual = imageSrc
+        ? `<img class="project-card__image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.imageAlt)}">`
+        : "";
+      const visualClass = imageSrc
+        ? "project-card__visual"
+        : `project-card__visual placeholder-visual placeholder-visual--${escapeHtml(entry.type === "art" ? "art" : entry.visualStyle || "code")}`;
+      const draftClass = options.draft ? " studio-draft-card" : "";
+
+      return `<article class="project-card project-card--tall${draftClass}" data-project-id="${escapeHtml(entry.id)}">
+            <div class="${visualClass}"${imageSrc ? "" : " aria-hidden=\"true\""}>${visual}</div>
+            <div class="project-card__body">
+              <span class="${badge.className}">${badge.label}</span>
+              <h2>${escapeHtml(entry.title)}</h2>
+              ${dateBlock}
+              <p>${escapeHtml(entry.description)}</p>
+              ${tagBlock}
+              <a class="button button--outline" href="${escapeHtml(href)}" target="_blank" rel="noreferrer">${escapeHtml(entry.actionLabel)}</a>
+            </div>
+          </article>`;
+    }
+
+    function normalizeProjectPaths(html) {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = html;
+      wrapper.querySelectorAll("[href], [src]").forEach((node) => {
+        ["href", "src"].forEach((attr) => {
+          const value = node.getAttribute(attr);
+          if (value && value.startsWith("../")) {
+            node.setAttribute(attr, value.replace(/^\.\.\//, ""));
+          }
+        });
+      });
+      return wrapper.innerHTML;
+    }
+
+    function renderPreview() {
+      const draft = getFormEntry();
+      const sessionCards = state.queuedEntries.map((entry) => renderCard(entry)).join("\n");
+      galleryPreview.innerHTML = [
+        renderCard(draft, { draft: true, previewImageSrc: state.imageThumbDataUrl }),
+        sessionCards,
+        state.currentGalleryHtml || ""
+      ].join("\n");
+    }
+
+    function renderQueue() {
+      if (!state.queuedEntries.length) {
+        sessionStatus.textContent = "No queued cards yet.";
+        queueList.innerHTML = "";
+        return;
+      }
+
+      sessionStatus.textContent = `${state.queuedEntries.length} card(s) ready. Save JSON to tools/project-session.json, then run the injector.`;
+      queueList.innerHTML = state.queuedEntries.map((entry, index) => `
+        <div class="queue-item" draggable="true" data-index="${index}">
+          <span>
+            <strong>${escapeHtml(entry.title)}</strong>
+            <small>${escapeHtml(entry.id)} / ${entry.type.toUpperCase()}</small>
+          </span>
+          <span class="queue-item__buttons">
+            <button class="mini-button" type="button" data-action="edit" data-index="${index}">Edit</button>
+            <button class="mini-button" type="button" data-action="up" data-index="${index}">Up</button>
+            <button class="mini-button" type="button" data-action="down" data-index="${index}">Down</button>
+            <button class="mini-button" type="button" data-action="remove" data-index="${index}">Remove</button>
+          </span>
+        </div>
+      `).join("");
+    }
+
+    function setFormFromEntry(entry) {
+      form.elements.type.value = entry.type;
+      form.elements.title.value = entry.title;
+      form.elements.id.value = entry.id;
+      form.elements.description.value = entry.description;
+      form.elements.targetUrl.value = entry.targetUrl || "";
+      form.elements.actionLabel.value = entry.actionLabel || "";
+      form.elements.techStack.value = (entry.techStack || []).join(", ");
+      form.elements.date.value = entry.date || "";
+      form.elements.visualStyle.value = entry.visualStyle || "code";
+      form.elements.imageAlt.value = entry.imageAlt || "";
+      form.elements.placement.value = entry.placement || "prepend";
+      state.originalFilename = entry.originalFilename || "";
+      state.imageOriginalDataUrl = entry.originalDataUrl || "";
+      state.imageThumbDataUrl = entry.thumbDataUrl || "";
+      imageInput.value = "";
+      updateTypeControls();
+      renderPreview();
+    }
+
+    async function loadCurrentGalleryFromText(html) {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const start = html.indexOf("<!-- PROJECT_CARDS_START -->");
+      const end = html.indexOf("<!-- PROJECT_CARDS_END -->");
+
+      if (start !== -1 && end !== -1 && end > start) {
+        state.currentGalleryHtml = normalizeProjectPaths(html.slice(start + "<!-- PROJECT_CARDS_START -->".length, end).trim());
+      } else {
+        const grid = doc.querySelector(".dump-grid");
+        state.currentGalleryHtml = grid ? normalizeProjectPaths(grid.innerHTML.trim()) : "";
+      }
+
+      const count = new DOMParser().parseFromString(`<div>${state.currentGalleryHtml}</div>`, "text/html").querySelectorAll(".project-card").length;
+      galleryStatus.textContent = count ? `Loaded ${count} current gallery card(s).` : "Loaded gallery, but no cards were found.";
+      renderPreview();
+    }
+
+    async function fetchCurrentGallery() {
+      galleryStatus.textContent = "Fetching projects/index.html...";
+      try {
+        const response = await fetch(`projects/index.html?studio=${Date.now()}`);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        await loadCurrentGalleryFromText(await response.text());
+      } catch (error) {
+        galleryStatus.textContent = "Fetch failed. Use a local server or the Load HTML fallback.";
+        state.currentGalleryHtml = "";
+        renderPreview();
+      }
+    }
+
+    function downloadSession() {
+      const payload = {
+        version: 1,
+        generatedAt: new Date().toISOString(),
+        entries: state.queuedEntries
+      };
+      const filename = document.querySelector("#session-file-name").value || "project-session.json";
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function copyCommand() {
+      const filename = document.querySelector("#session-file-name").value || "project-session.json";
+      const command = `node tools/inject-projects.js tools/${filename}`;
+      navigator.clipboard.writeText(command).then(() => {
+        sessionStatus.textContent = `Copied: ${command}`;
+      }).catch(() => {
+        sessionStatus.textContent = command;
+      });
+    }
+
+    function updateTypeControls() {
+      const isArt = assetType.value === "art";
+      visualStyleField.classList.toggle("hidden", isArt);
+      if (!actionLabelInput.value || ["View project", "View artwork"].includes(actionLabelInput.value)) {
+        actionLabelInput.value = isArt ? "View artwork" : "View project";
+      }
+    }
+
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function createThumbnail(dataUrl, maxSize = 1200) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => {
+          const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(image.width * scale);
+          canvas.height = Math.round(image.height * scale);
+          const context = canvas.getContext("2d");
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", 0.86));
+        };
+        image.onerror = reject;
+        image.src = dataUrl;
+      });
+    }
+
+    titleInput.addEventListener("input", () => {
+      if (!idInput.dataset.edited) {
+        idInput.value = slugify(titleInput.value);
+      }
+      renderPreview();
+    });
+
+    idInput.addEventListener("input", () => {
+      idInput.dataset.edited = "true";
+      idInput.value = slugify(idInput.value);
+      renderPreview();
+    });
+
+    form.addEventListener("input", renderPreview);
+
+    assetType.addEventListener("change", () => {
+      updateTypeControls();
+      renderPreview();
+    });
+
+    imageInput.addEventListener("change", async () => {
+      const file = imageInput.files[0];
+      if (!file) {
+        state.originalFilename = "";
+        state.imageOriginalDataUrl = "";
+        state.imageThumbDataUrl = "";
+        renderPreview();
+        return;
+      }
+
+      state.originalFilename = file.name;
+      state.imageOriginalDataUrl = await readFileAsDataUrl(file);
+      state.imageThumbDataUrl = await createThumbnail(state.imageOriginalDataUrl);
+      renderPreview();
+    });
+
+    document.querySelector("#queue-card").addEventListener("click", () => {
+      const entry = getFormEntry();
+      if (!entry.title || !entry.description) {
+        sessionStatus.textContent = "Title and description are required.";
+        return;
+      }
+      if (entry.type === "dev" && !entry.targetUrl) {
+        sessionStatus.textContent = "Dev cards need a target URL.";
+        return;
+      }
+      if (entry.type === "art" && !entry.targetUrl && !entry.originalDataUrl) {
+        sessionStatus.textContent = "Art cards need a target URL or an image showcase.";
+        return;
+      }
+
+      const index = state.queuedEntries.findIndex((item) => item.id === entry.id);
+      if (index >= 0) {
+        state.queuedEntries[index] = entry;
+      } else {
+        state.queuedEntries.push(entry);
+      }
+      renderQueue();
+      renderPreview();
+    });
+
+    document.querySelector("#reset-form").addEventListener("click", () => {
+      form.reset();
+      idInput.dataset.edited = "";
+      state.originalFilename = "";
+      state.imageOriginalDataUrl = "";
+      state.imageThumbDataUrl = "";
+      updateTypeControls();
+      renderPreview();
+    });
+
+    document.querySelector("#download-session").addEventListener("click", downloadSession);
+    document.querySelector("#copy-command").addEventListener("click", copyCommand);
+    document.querySelector("#refresh-gallery").addEventListener("click", fetchCurrentGallery);
+
+    projectFileInput.addEventListener("change", () => {
+      const file = projectFileInput.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => loadCurrentGalleryFromText(reader.result);
+      reader.readAsText(file);
+    });
+
+    queueList.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) {
+        return;
+      }
+      const index = Number(button.dataset.index);
+      const action = button.dataset.action;
+      if (action === "edit") {
+        setFormFromEntry(state.queuedEntries[index]);
+      }
+      if (action === "remove") {
+        state.queuedEntries.splice(index, 1);
+      }
+      if (action === "up" && index > 0) {
+        [state.queuedEntries[index - 1], state.queuedEntries[index]] = [state.queuedEntries[index], state.queuedEntries[index - 1]];
+      }
+      if (action === "down" && index < state.queuedEntries.length - 1) {
+        [state.queuedEntries[index + 1], state.queuedEntries[index]] = [state.queuedEntries[index], state.queuedEntries[index + 1]];
+      }
+      renderQueue();
+      renderPreview();
+    });
+
+    queueList.addEventListener("dragstart", (event) => {
+      const item = event.target.closest(".queue-item");
+      if (item) {
+        event.dataTransfer.setData("text/plain", item.dataset.index);
+      }
+    });
+
+    queueList.addEventListener("dragover", (event) => {
+      event.preventDefault();
+    });
+
+    queueList.addEventListener("drop", (event) => {
+      event.preventDefault();
+      const from = Number(event.dataTransfer.getData("text/plain"));
+      const target = event.target.closest(".queue-item");
+      if (!target) {
+        return;
+      }
+      const to = Number(target.dataset.index);
+      const [moved] = state.queuedEntries.splice(from, 1);
+      state.queuedEntries.splice(to, 0, moved);
+      renderQueue();
+      renderPreview();
+    });
+
+    updateTypeControls();
+    renderPreview();
+    fetchCurrentGallery();
+  </script>
+</body>
+</html>
