@@ -15,3 +15,5 @@ Personal portfolio website for Allan Tacuel, built as a static GitHub Pages site
 ## Notes
 
 This pass uses draft content and CSS placeholders for missing assets. Replace placeholder links, email, project cards, thumbnails, and the temporary `assets/resume.pdf` when final materials are ready.
+
+// TODO: add webp asset conversion automation

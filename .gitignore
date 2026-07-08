@@ -10,8 +10,8 @@ Thumbs.db
 *.log
 scratch.*
 
-# Hold da tool, keep local
-tools/
+# Hold local configuration files for the project, but don't track them in git
+locals/
 
 # Don't track the agents folder, it's for local use only
 .agents/
@@ -28,4 +28,3 @@ coverage/
 npm-debug.log*
 yarn-error.log
 *.local
-
